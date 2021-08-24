@@ -64,6 +64,28 @@ class LinkedList
     false
   end
 
+  def find(val)
+    return "Element not found" if self.contains?(val) == false
+    return 0 if @head.value == val
+    tmp = @head
+    index = 0
+    until tmp.link == nil
+      tmp = tmp.link
+      index += 1
+      return index if tmp.value == val
+    end
+    "Element not found"
+  end
+
+  def to_s
+    tmp = @head
+    return_string = ''
+    until tmp == nil
+      return_string << "( #{tmp.value} ) -> "
+      tmp = tmp.link
+    end
+    return_string << "nil"
+  end
 
 end
 
@@ -90,4 +112,7 @@ my_list.append(22)
 # puts my_list.at(3).value
 # puts my_list.pop
 # p my_list.size
-p my_list.contains?(29)
+# p my_list.contains?(29)
+# p my_list.find(76)
+p my_list.to_s
+
