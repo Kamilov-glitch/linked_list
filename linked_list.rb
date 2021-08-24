@@ -49,6 +49,20 @@ class LinkedList
 	end
 
   def pop
+    return_value = self.tail.value
+    self.at(self.size - 2).link = nil
+    return_value
+  end
+
+  def contains?(val)
+    return true if @head.value == val
+    tmp = @head
+    until tmp.link == nil
+      tmp = tmp.link
+      return true if tmp.value == val
+    end
+    false
+  end
 
 
 end
@@ -71,6 +85,9 @@ head.link = tail
 my_list.prepend(8)
 my_list.append(22)
 # p my_list
-puts my_list.head.value
-puts my_list.tail.value
-puts my_list.at(3).value
+# puts my_list.head.value
+# puts my_list.tail.value
+# puts my_list.at(3).value
+# puts my_list.pop
+# p my_list.size
+p my_list.contains?(29)
