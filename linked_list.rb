@@ -41,7 +41,9 @@ class LinkedList
 		tmp = @head
 		num = 0
 		until num == index
-			return raise "Index not found" if tmp.link == nil
+			if tmp == nil
+				return nil
+			end
 			tmp = tmp.link
 			num+=1
 		end
@@ -87,6 +89,20 @@ class LinkedList
     return_string << "nil"
   end
 
+  def insert_at(value, index)
+    curr = self.at(index)
+    prev = self.at(index - 1)
+    if curr == nil && prev == nil
+      nil
+    elsif curr == nil && prev != nil
+      prev.link = Node.new value
+    elsif curr !=nil && prev == nil
+      @head = Node.new(value, @head)
+    else
+      prev.link = Node.new(value, curr)
+    end
+end
+
 end
 
 class Node
@@ -109,10 +125,12 @@ my_list.append(22)
 # p my_list
 # puts my_list.head.value
 # puts my_list.tail.value
-# puts my_list.at(3).value
+# p my_list.at(7)
 # puts my_list.pop
 # p my_list.size
 # p my_list.contains?(29)
 # p my_list.find(76)
+p my_list.to_s
+my_list.insert_at(29, 3)
 p my_list.to_s
 
