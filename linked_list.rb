@@ -101,7 +101,17 @@ class LinkedList
     else
       prev.link = Node.new(value, curr)
     end
-end
+  end
+
+  def remove_at(index)
+    if self.at(index) == nil
+      nil
+    elsif index == 0
+      @head = self.at(1) if self.size > 1
+    else
+      self.at(index - 1).link = self.at(index).link
+    end
+  end
 
 end
 
@@ -133,4 +143,5 @@ my_list.append(22)
 p my_list.to_s
 my_list.insert_at(29, 3)
 p my_list.to_s
-
+my_list.remove_at(2)
+p my_list.to_s
